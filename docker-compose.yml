@@ -1,0 +1,17 @@
+name: beijing-devops-stack
+
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    restart: always
+    volumes:
+      - ./:/usr/share/nginx/html  # 将 GitHub 传过来的整个目录挂载给 Nginx
+
+  cache:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    restart: always
+    command: redis-server --requirepass "DevOps2026"
